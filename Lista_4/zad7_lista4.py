@@ -6,7 +6,7 @@ import numpy as np
 w = np.poly([1, 5 + 1j, -(8 - 5j), (30 - 14j), -84])
 
 # Pierwiastki wielomianu
-x = np.roots(w);
+x = np.roots(w)
 
 # Wyświetlenie pierwiastków
 print(x)
