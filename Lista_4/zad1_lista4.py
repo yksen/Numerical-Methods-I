@@ -30,7 +30,7 @@ while b < -m:
         x.append(optimize.ridder(f, a, b))
         a = b
     # Inaczej sprawdzam czy znaleziono już wszystkie pierwiastki
-    elif len(x) == 4:
+    elif len(x) == n:
         break
     # Jeśli znaleziono co najmniej jeden pierwiastek to przesuwam się małym krokiem
     if len(x) > 0:
