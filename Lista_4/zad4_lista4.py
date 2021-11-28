@@ -55,7 +55,7 @@ krok = startowy_krok
 
 # Deklaracja pustej tablicy rozwiązań, początkowego x i pierwszych wartości y
 rozwiazania = []
-x = -1.3
+x = -2
 y1 = pierwszeRownanie(x)
 y2 = drugieRownanie(x)[0]
 nast_y1 = pierwszeRownanie(x + krok)
