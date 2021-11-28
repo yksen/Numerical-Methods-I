@@ -16,14 +16,11 @@ def drugieRownanie(x, n):
     y2 = 2*np.pi*n - np.arcsin(np.cos(x) / 3) + np.pi
     return (y1, y2)
 
-# Deklaracja przedziału, kroku, ilości punktów, tolerancji
-x_start = 0
-x_koniec = 1.5
-krok = 10**-7
-ilosc = int((x_koniec - x_start) / krok)
-tolerancja = 10**-6
-
 if rysuj_wykres:
+    # Deklaracja przedziału, kroku, ilości punktów, tolerancji
+    x_start = 0
+    x_koniec = 1.5
+    ilosc = 100000
     # Wykres pierwszego równania
     x = np.linspace(x_start, x_koniec, ilosc)
     y = np.array(pierwszeRownanie(x))
@@ -43,30 +40,62 @@ if rysuj_wykres:
     # Ponadto dzięki metodzie prób i błędów wiem też dla jakich wartości n
     # drugiego równania można spodziewać się rozwiązań (od 0 do 2) dla x > 0,8.
 
-# Deklaracja pustej tablicy rozwiązań, początkowego x, n i pierwszych wartości y
+# Tolerancja i krok startowy (względnie duży)
+tolerancja = 10**-7
+startowy_krok = 10**-3
+krok = startowy_krok
+
+# Deklaracja pustej tablicy rozwiązań, początkowego x i pierwszych wartości y
 rozwiazania = []
-x = 0.8
+x = 0
 n = 0
+i = 0
 y1 = pierwszeRownanie(x)
 y2 = drugieRownanie(x, n)
+nast_y1 = pierwszeRownanie(x + krok)
+nast_y2 = drugieRownanie(x + krok, n)
+znaleziono = False
 
-while x <= x_koniec:
-    # Jeśli znaleziono wszystkie rozwiązania, przerwij pętlę
-    if len(rozwiazania) == 5:
-        break
-    # Jeśli wartość pierwszego rów. jest większa od większej wartości drugiego przesuwam się na kolejne n
-    if y1 > y2[1]:
+# Pętla szukająca wszystkich (5) zaobserwowanych na wykresie rozwiązań 
+while len(rozwiazania) < 5:
+    # Ustalenie która z dwóch wartości drugiego równania zwracanych dla pojedynczego n jest bliższa rosnącej w przeszukiwanym przedziale funkcji pierwszej
+    if y2[0] > y1:
+        i = 0
+    elif y2[1] > y1:
+        i = 1
+    else:
         n += 1
-    # Sprawdzenie czy moduł różnicy rozwiązań obu równań jest mniejszy od tolerancji, jeśli tak
-    # dodaje rozwiązanie (x, y) do listy rozwiązań tego układu równań.
-    for y in y2:
-        if abs(y1 - y) < tolerancja:
-            rozwiazania.append((x, y1))
+        i = 0
+        y1 = pierwszeRownanie(x)
+        y2 = drugieRownanie(x, n)
+        nast_y1 = pierwszeRownanie(x + krok)
+        nast_y2 = drugieRownanie(x + krok, n)
 
-    # Nowe wartości x i y
+    # Jeśli te dwie funkcje się przecinają pomiędzy kolejnymi dużymi krokami, szukaj rozwiązania
+    if (y1 - y2[i]) * (nast_y1 - nast_y2[i]) < 0:
+        # Dopóki nie znaleziono rozwiązania zmniejszam krok o 0.1 co przeszukanie przedziału
+        while not znaleziono:
+            a = x
+            # Przeszukiwanie przedziału z zadanym krokiem
+            while a < x + startowy_krok:
+                y1 = pierwszeRownanie(a)
+                y2 = drugieRownanie(a, n)[i]
+                # Jeśli różnica wartości y obydwu równań jest mniejsza od ustalonej tolerancji znaleziono rozwiązanie
+                if abs(y1 - y2) < tolerancja:
+                    rozwiazania.append((a, y1))
+                    znaleziono = True                    
+                    break
+                a += krok
+            krok *= 10**-1
+    # Zresetowanie wartości do przeszukiwania znalezionego przedziału
+    znaleziono = False
+    krok = startowy_krok
+    # Aktualizacja wartości do poszukiwania odpowiedniego kandydata na przedział zawierający rozwiązanie
     x += krok
     y1 = pierwszeRownanie(x)
     y2 = drugieRownanie(x, n)
+    nast_y1 = pierwszeRownanie(x + krok)
+    nast_y2 = drugieRownanie(x + krok, n)
 
 # Wyświetlenie rozwiązań
 print(rozwiazania)
