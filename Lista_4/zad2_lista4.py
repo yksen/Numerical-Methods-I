@@ -1,11 +1,10 @@
 # Kamil Selega zadanie 2 lista 4
 
-def pierwiastekPiategoStopnia(x0):
-    tolerancja = 10**-9
+def pierwiastekPiategoStopnia(x0, tolerancja = 10**-9):
     poprzedni = x0
     # Liczenie kolejnego przybliżenia pierwiastka metodą Newtona
     aktualny = (1/5) * (4*x0 + (x0/(x0**4)))
-    # Liczenie kolejnych przybliżeń do momentu gdy różnica dwóch kolejnych jest mniejsza od zdefiniowanej
+    # Liczenie kolejnych przybliżeń do momentu gdy różnica dwóch kolejnych jest mniejsza od zadeklarowanej
     while abs(aktualny - poprzedni) > tolerancja:
         poprzedni = aktualny
         aktualny = (1/5) * (4*aktualny + (x0/(aktualny**4)))
