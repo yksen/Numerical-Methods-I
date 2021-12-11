@@ -20,9 +20,9 @@ a2 = np.polyfit(x, y, 2)
 
 # Naniesienie prostej i funkcji kwadratowej na wykres
 xw = np.linspace(x[0] - 1, x[-1] + 1, 100)
-y1 = a1[0] * xw**1 + a1[1] * xw**0
+y1 = np.polyval(a1, xw)
+y2 = np.polyval(a2, xw)
 plt.plot(xw, y1, "orange")
-y2 = a2[0] * xw**2 + a2[1] * xw**1 + a2[2] * xw**0
 plt.plot(xw, y2, "red")
 
 # Wyświetlenie wykresu
