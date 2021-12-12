@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 Re = np.array([0.2, 2, 20, 200, 2000, 20000])
 cp = np.array([103, 13.9, 2.72, 0.8, 0.401, 0.433])
 
-# Interpolacja
+# Interpolacja funkcjami sklejanymi
 xs = np.arange(Re[0], Re[-1], 0.01)
 cs = CubicSpline(np.log10(Re), np.log10(cp))
 
