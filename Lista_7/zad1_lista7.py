@@ -11,7 +11,7 @@ def f(t, y):
 # Dane
 y0 = [2, 2.5, 3, 3.5]
 # Rozwiązania w zadanym przedziale
-roz = solve_ivp(f, (0, 6), y0, t_eval=np.linspace(0, 6, 1000))
+roz = solve_ivp(f, (0, 6), y0, t_eval=np.linspace(0, 6, 1000), method="LSODA")
 
 # Wykres rozwiązań
 for i in range(len(y0)):
