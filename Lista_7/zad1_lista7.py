@@ -10,11 +10,11 @@ def f(t, y):
 
 # Dane
 y0 = [2, 2.5, 3, 3.5]
-# Rozwiązania w zadanycm przedziale
-rozwiazanie = solve_ivp(f, (0, 6), y0, t_eval=np.linspace(0, 6, 1000))
+# Rozwiązania w zadanym przedziale
+roz = solve_ivp(f, (0, 6), y0, t_eval=np.linspace(0, 6, 1000))
 
 # Wykres rozwiązań
 for i in range(len(y0)):
-    plt.plot(rozwiazanie.t, rozwiazanie.y[i], label=y0[i])
+    plt.plot(roz.t, roz.y[i], label=y0[i])
 plt.legend()
 plt.show()
