@@ -1,6 +1,5 @@
 # Kamil Selega zadanie 3 lista 7
 
-from cProfile import label
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
