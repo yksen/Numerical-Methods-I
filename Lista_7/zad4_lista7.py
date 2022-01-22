@@ -38,7 +38,6 @@ u0 = 2.5
 u = newton(g, u0)
 roz = solve_ivp(f, (a, b), [y_a, u], t_eval=np.linspace(a, b, 1000))
 plt.plot(roz.t, roz.y[0], label="y(t)")
-plt.plot(roz.t, roz.y[1], label="y'(t)")
 plt.plot([a, b], [y_a, y_b], "o", label="Warunki brzegowe")
 plt.legend()
 plt.show()
