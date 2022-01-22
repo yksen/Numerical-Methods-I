@@ -19,7 +19,9 @@ Fd = -1/2 * cw * rho * A
 # Definicja równania różniczkowego
 def f(t, u, i):
     x, vx, y, vy = u
+    # Wartość prędkości z twierdzenia Pitagorasa
     v = np.sqrt(vx**2 + vy**2)
+    # Wartości przyspieszenia z uwzględnieniem siły oporu powietrza i siły grawitacji
     ax = Fd[i]/m * v * vx
     ay = Fd[i]/m * v * vy - g
     return [vx, ax, vy, ay]
