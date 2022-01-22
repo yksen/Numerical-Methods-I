@@ -25,7 +25,7 @@ t = np.linspace(0, 50, 1000)
 # Rozwiązanie dla każdego zestawu warunków początkowych i naniesienie ich na wykres wraz z opisem osi
 for i in range(len(theta_0)):
     rozw = solve_ivp(f, y0=[theta_0[i], dtheta_0], t_span=(t[0], t[-1]), t_eval=t, args=[A[i]], method="LSODA")
-    osie[0, i].plot(rozw.t, rozw.y[0])
+    osie[0, i].plot(rozw.t, rozw.y[1])
     osie[0, i].set_xlabel("t")
     osie[0, i].set_ylabel("theta")
     osie[1, i].plot(rozw.y[1], rozw.y[0])
