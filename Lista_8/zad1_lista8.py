@@ -1,6 +1,5 @@
 # Kamil Selega zadanie 1 lista 8
 
-from contextlib import suppress
 import numpy as np
 from scipy import linalg
 
