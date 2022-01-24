@@ -1,6 +1,5 @@
 # Kamil Selega zadanie 2 lista 8
 
-import numpy as np
 from scipy import linalg
 
 # Dana macierz
