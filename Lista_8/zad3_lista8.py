@@ -8,7 +8,7 @@ from scipy.sparse.linalg import eigsh
 n = 10, 100
 
 for i in n:
-    # Macierz rozmiaru n[i] x n[i] wypełniona jedynkami
+    # Macierz rozmiaru n x n wypełniona jedynkami
     macierz = np.ones(i)
     # Wartości na diagonalach macierzy i ich przesunięcia względem głównej diagonali
     wartosci = [-macierz, 2 * macierz, -macierz]
