@@ -31,7 +31,7 @@ for m in M:
     print(f"m = {m}")
     # print(macierz)
     print(f"Wartości własne:\n{eigen[0]}")
-    print(f"Wektory własne:\n{eigen[1].T}\n")
+    print(f"Wektory własne:\n{eigen[1]}\n")
     print(eigen[1].T)
     # Wykresy funkcji falowych dla czterech najmniejszych wartości własnych dla obydwu wartości m
     okno, wykr = plt.subplots(2, 2)
