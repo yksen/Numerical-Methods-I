@@ -14,7 +14,7 @@ x = (0, 4)
 y0 = [.2]
 
 # Rozwiązanie
-roz = solve_ivp(f, x, y0, events=pierwiastek, atol=1e-10, rtol=1e-12)
+roz = solve_ivp(f, x, y0, events=pierwiastek, rtol=1e-10, atol=1e-12)
 
 # Znalezione pierwiastki
 print(f"Pierwiastki znalezione w badanym przedziale to: {roz.t_events[0]}")
